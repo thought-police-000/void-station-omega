@@ -15,18 +15,17 @@ No dependencies required — runs on Python 3.10+ with only the standard library
 ## Gameplay
 
 ```
-> take bar
-Taken: pry bar. This hefty bar could force open stuck doors or hatches.
+> look
+--- Cryo Bay ---
+Rows of cryo-pods line the walls, frost still clinging to the glass.
+Only yours is open. Emergency lighting bathes everything in dim red.
 
-> use bar
-You wedge the pry bar into the hatch frame and heave. With a screech of
-metal, the hatch grinds open, revealing the corridor beyond.
+> examine pod
+The cryo-pod you woke up in. The display reads: 'EMERGENCY REVIVAL —
+CREW STATUS: EVACUATED'. You're the only one left.
 
 > south
---- Deck A Corridor (Fore) ---
-A long corridor stretching through the crew deck. Pipes run along the
-ceiling, dripping condensation. The walls are scratched with deep gouges
-— something with claws came through here.
+The hatch is jammed shut. You'll need something to force it open.
 ```
 
 ### Commands
@@ -47,22 +46,7 @@ ceiling, dripping condensation. The walls are scratched with deep gouges
 
 ## The Station
 
-25 rooms across three decks:
-
-- **Deck A** — Crew quarters & operations: cryo bay, medbay, bridge, command center, security
-- **Deck B** — Science & labs: four laboratories, server room, observation deck, a hidden chamber
-- **Deck C** — Engineering & escape: reactor room, life support, cargo hold, maintenance shaft, escape pod bay
-
-5 puzzle chains, 250 maximum score.
-
-## Map
-
-Generate an SVG station map:
-
-```
-python3 generate_map.py
-open map.svg
-```
+25 rooms across three decks. 250 maximum score.
 
 ## Architecture
 
