@@ -1,0 +1,14 @@
+
+The cryo-pod hisses open and you tumble onto cold metal flooring.
+
+Emergency lighting bathes everything in dim red. Your head pounds. The last
+thing you remember is the station alarm blaring — something about a
+containment breach in the xenobiology labs.
+
+You are aboard VOID STATION OMEGA, a deep-space research platform at the
+edge of known space. The crew is gone. The halls are silent. And something
+is very, very wrong.
+
+Your objective: find a way off this station before it's too late.
+
+(Type HELP for a list of commands.)

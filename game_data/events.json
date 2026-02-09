@@ -1,0 +1,586 @@
+{
+  "events": [
+    {
+      "id": "pry_hatch",
+      "verb": "use",
+      "noun": "pry_bar",
+      "room": "cryo_bay",
+      "conditions": [
+        {"type": "carrying", "target": "pry_bar"},
+        {"type": "flag_unset", "target": "hatch_pried"}
+      ],
+      "actions": [
+        {"type": "message", "value": "You wedge the pry bar into the hatch frame and heave. With a screech of metal, the hatch grinds open, revealing the corridor beyond."},
+        {"type": "set_flag", "target": "hatch_pried"},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "pry_hatch_no_bar",
+      "verb": "use",
+      "noun": "hatch",
+      "room": "cryo_bay",
+      "conditions": [
+        {"type": "flag_unset", "target": "hatch_pried"},
+        {"type": "not_carrying", "target": "pry_bar"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The hatch is wedged shut. You'd need something to pry it open."}
+      ],
+      "priority": 5
+    },
+    {
+      "id": "take_keycard",
+      "verb": "take",
+      "noun": "keycard",
+      "conditions": [
+        {"type": "here", "target": "keycard"},
+        {"type": "flag_unset", "target": "got_keycard"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "keycard", "value": "__inventory__"},
+        {"type": "set_flag", "target": "has_keycard_a"},
+        {"type": "set_flag", "target": "got_keycard"},
+        {"type": "message", "value": "Taken: security keycard. The Command Center security door should respond to this."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "enter_command",
+      "verb": null,
+      "room": "command_center",
+      "conditions": [
+        {"type": "flag_unset", "target": "entered_command"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "entered_command"},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true
+    },
+    {
+      "id": "take_flashlight",
+      "verb": "take",
+      "noun": "flashlight",
+      "conditions": [
+        {"type": "here", "target": "flashlight"},
+        {"type": "flag_unset", "target": "got_flashlight"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "flashlight", "value": "__inventory__"},
+        {"type": "set_flag", "target": "has_light"},
+        {"type": "set_flag", "target": "got_flashlight"},
+        {"type": "message", "value": "Taken: flashlight. You switch it on — the beam cuts through the dim station lighting."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "navigate_dark_shaft",
+      "verb": null,
+      "room": "maintenance_shaft",
+      "conditions": [
+        {"type": "flag_set", "target": "has_light"},
+        {"type": "flag_unset", "target": "navigated_shaft"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "navigated_shaft"},
+        {"type": "message", "value": "Your flashlight illuminates the shaft, revealing the rungs clearly. You can safely navigate here now."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true
+    },
+    {
+      "id": "combine_cell_adapter",
+      "verb": "combine",
+      "noun": "power_cell with adapter",
+      "conditions": [
+        {"type": "carrying", "target": "power_cell"},
+        {"type": "carrying", "target": "adapter"}
+      ],
+      "actions": [
+        {"type": "destroy_item", "target": "power_cell"},
+        {"type": "destroy_item", "target": "adapter"},
+        {"type": "move_item", "target": "powered_cell", "value": "__inventory__"},
+        {"type": "message", "value": "You carefully fit the alien power cell into the adapter. It clicks into place with a satisfying hum. The adapted power cell glows steadily — ready for the reactor."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "combine_adapter_cell",
+      "verb": "combine",
+      "noun": "adapter with power_cell",
+      "conditions": [
+        {"type": "carrying", "target": "power_cell"},
+        {"type": "carrying", "target": "adapter"}
+      ],
+      "actions": [
+        {"type": "destroy_item", "target": "power_cell"},
+        {"type": "destroy_item", "target": "adapter"},
+        {"type": "move_item", "target": "powered_cell", "value": "__inventory__"},
+        {"type": "message", "value": "You carefully fit the alien power cell into the adapter. It clicks into place with a satisfying hum. The adapted power cell glows steadily — ready for the reactor."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "install_reactor_cell",
+      "verb": "use",
+      "noun": "powered_cell",
+      "room": "reactor_room",
+      "conditions": [
+        {"type": "carrying", "target": "powered_cell"},
+        {"type": "flag_unset", "target": "reactor_powered"}
+      ],
+      "actions": [
+        {"type": "destroy_item", "target": "powered_cell"},
+        {"type": "set_flag", "target": "reactor_powered"},
+        {"type": "message", "value": "You slot the adapted power cell into the reactor socket. The reactor roars to life! Lights throughout the station flicker to full brightness. Systems begin rebooting. Full power has been restored to Void Station Omega."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "install_raw_cell",
+      "verb": "use",
+      "noun": "power_cell",
+      "room": "reactor_room",
+      "conditions": [
+        {"type": "carrying", "target": "power_cell"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The alien power cell doesn't fit the reactor's standard socket. You'd need some kind of adapter to make it compatible."}
+      ],
+      "priority": 5
+    },
+    {
+      "id": "read_research_notes",
+      "verb": "examine",
+      "noun": "research_notes",
+      "conditions": [
+        {"type": "flag_unset", "target": "read_notes"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "read_notes"},
+        {"type": "add_score", "value": 10},
+        {"type": "message", "value": "Dr. Elena Vasquez's research journal. The entries grow increasingly frantic:\n\n'Day 45: The specimen is unlike anything we've seen. Its crystalline structure defies analysis.'\n'Day 52: It responds to proximity. Bio-signatures seem to activate it.'\n'Day 61: I've locked the chamber with my biometric data. Only my hand scan can open it now. The specimen is too dangerous for general access.'\n'Day 63: God help us. It's loose.'\n\nThe biometric lock on the specimen chamber... you'd need Dr. Vasquez's credentials to open it."}
+      ],
+      "once": true,
+      "override_builtin": true,
+      "priority": 10
+    },
+    {
+      "id": "use_bio_scanner",
+      "verb": "use",
+      "noun": "id_badge",
+      "room": "lab_c2",
+      "conditions": [
+        {"type": "carrying", "target": "id_badge"},
+        {"type": "flag_unset", "target": "bio_lock_opened"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "bio_lock_opened"},
+        {"type": "message", "value": "You hold Dr. Vasquez's ID badge up to the biometric scanner. It flashes green and chimes. The sealed door slides open with a hiss, revealing the Alien Specimen Chamber beyond."},
+        {"type": "add_score", "value": 15}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "use_scanner_no_badge",
+      "verb": "use",
+      "noun": "bio_scanner",
+      "room": "lab_c2",
+      "conditions": [
+        {"type": "not_carrying", "target": "id_badge"},
+        {"type": "flag_unset", "target": "bio_lock_opened"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The biometric scanner blinks red. ACCESS DENIED. You need to be carrying authorized credentials in your inventory."}
+      ],
+      "priority": 5
+    },
+    {
+      "id": "take_artifact",
+      "verb": "take",
+      "noun": "artifact",
+      "room": "alien_chamber",
+      "conditions": [
+        {"type": "here", "target": "artifact"},
+        {"type": "flag_unset", "target": "took_artifact"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "artifact", "value": "__inventory__"},
+        {"type": "set_flag", "target": "took_artifact"},
+        {"type": "set_counter", "target": "self_destruct", "value": 15},
+        {"type": "enable_timer", "target": "self_destruct_timer"},
+        {"type": "set_flag", "target": "alien_awakened"},
+        {"type": "message", "value": "As you lift the crystalline artifact from its pedestal, the entire station shudders. Alarms begin wailing. A computerized voice announces:\n\n'WARNING: CONTAINMENT BREACH DETECTED. SELF-DESTRUCT SEQUENCE INITIATED. T-MINUS 15 TURNS TO DETONATION.'\n\nA bone-chilling shriek echoes from somewhere deep in the station. Something has awakened."},
+        {"type": "add_score", "value": 20}
+      ],
+      "once": true,
+      "override_builtin": true,
+      "priority": 10
+    },
+    {
+      "id": "read_captains_log",
+      "verb": "examine",
+      "noun": "captains_log",
+      "conditions": [
+        {"type": "flag_unset", "target": "read_log"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "read_log"},
+        {"type": "add_score", "value": 10},
+        {"type": "message", "value": "Captain Torres's final entry:\n\n'We're evacuating. Five of the seven pods are loaded. Vasquez stayed behind to secure the specimen chamber. I can't reach her on comms. There's one more pod, but we can't wait. The creature has reached Deck A.\n\nTo whoever finds this: the override code for the pod bay is 7439. The escape pod in Bay 6 needs external power — the station reserves aren't enough. God speed.\n\n- Capt. R. Torres'\n\nOverride code 7439... that could open the pod bay!"}
+      ],
+      "once": true,
+      "override_builtin": true,
+      "priority": 10
+    },
+    {
+      "id": "use_data_chip_terminal",
+      "verb": "use",
+      "noun": "data_chip",
+      "room": "deck_c_corridor",
+      "conditions": [
+        {"type": "carrying", "target": "data_chip"},
+        {"type": "flag_unset", "target": "terminal_repaired"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "terminal_repaired"},
+        {"type": "message", "value": "You insert the data chip into the damaged terminal. The screen flickers to life, displaying:\n\n'OVERRIDE TERMINAL ACTIVE'\n'ENTER AUTHORIZATION CODE: _'\n\nThe terminal is now functional. You can USE TERMINAL to enter the override code."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "use_terminal_with_code",
+      "verb": "use",
+      "noun": "terminal",
+      "room": "deck_c_corridor",
+      "conditions": [
+        {"type": "flag_set", "target": "terminal_repaired"},
+        {"type": "flag_set", "target": "read_log"},
+        {"type": "flag_unset", "target": "pod_bay_unsealed"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "pod_bay_unsealed"},
+        {"type": "message", "value": "You enter the override code: 7439.\n\nThe terminal chimes. 'AUTHORIZATION ACCEPTED. ESCAPE POD BAY BLAST DOOR: UNSEALED.'\n\nWith a heavy clunk, the blast door to the north unlocks."},
+        {"type": "add_score", "value": 15}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "use_terminal_no_chip",
+      "verb": "use",
+      "noun": "terminal",
+      "room": "deck_c_corridor",
+      "conditions": [
+        {"type": "flag_unset", "target": "terminal_repaired"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The terminal screen is cracked and dark. It looks like it needs a data chip to boot."}
+      ],
+      "priority": 5
+    },
+    {
+      "id": "use_terminal_no_code",
+      "verb": "use",
+      "noun": "terminal",
+      "room": "deck_c_corridor",
+      "conditions": [
+        {"type": "flag_set", "target": "terminal_repaired"},
+        {"type": "flag_unset", "target": "read_log"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The terminal prompts for an authorization code. You don't know the code yet — maybe there's a record of it somewhere on the station."}
+      ],
+      "priority": 5
+    },
+    {
+      "id": "use_artifact_pod",
+      "verb": "use",
+      "noun": "artifact",
+      "room": "escape_pod_bay",
+      "conditions": [
+        {"type": "carrying", "target": "artifact"},
+        {"type": "flag_unset", "target": "pod_powered"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "pod_powered"},
+        {"type": "message", "value": "You place the crystalline artifact into the escape pod's auxiliary power coupling. The artifact flares brilliantly, and the pod's systems come alive. Status panel now reads: READY FOR LAUNCH.\n\nThe pod is powered and ready! USE POD to launch!"},
+        {"type": "destroy_item", "target": "artifact"},
+        {"type": "add_score", "value": 15}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "pry_locker",
+      "verb": "use",
+      "noun": "pry_bar",
+      "room": "security",
+      "conditions": [
+        {"type": "carrying", "target": "pry_bar"},
+        {"type": "flag_unset", "target": "locker_opened"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "locker_opened"},
+        {"type": "swap_item", "target": "locker", "value": "locker_open"},
+        {"type": "move_item", "target": "riot_grenade", "value": "security"},
+        {"type": "message", "value": "You jam the pry bar into the weapon locker and wrench it open. Inside is a riot gas grenade!"},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "use_locker",
+      "verb": "use",
+      "noun": "locker",
+      "room": "security",
+      "conditions": [
+        {"type": "not_carrying", "target": "pry_bar"},
+        {"type": "flag_unset", "target": "locker_opened"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The weapon locker is jammed shut. You'd need something to force it open."}
+      ],
+      "priority": 5
+    },
+    {
+      "id": "alien_blocks_path_enter_corridor",
+      "verb": null,
+      "room": "deck_c_corridor",
+      "conditions": [
+        {"type": "flag_set", "target": "alien_awakened"},
+        {"type": "flag_unset", "target": "alien_stunned"},
+        {"type": "flag_set", "target": "pod_bay_unsealed"}
+      ],
+      "actions": [
+        {"type": "message", "value": "A massive alien creature crouches in the corridor, blocking the path to the Escape Pod Bay! Its bio-luminescent hide pulses with energy and its eyeless head swivels toward you. You'll need to deal with it before you can reach the pod."}
+      ],
+      "priority": 10
+    },
+    {
+      "id": "alien_blocks_pod_bay",
+      "verb": "go",
+      "noun": "north",
+      "room": "deck_c_corridor",
+      "conditions": [
+        {"type": "flag_set", "target": "alien_awakened"},
+        {"type": "flag_unset", "target": "alien_stunned"},
+        {"type": "flag_set", "target": "pod_bay_unsealed"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The alien creature lunges at you as you try to pass! You barely dodge back in time. You need to neutralize it first!"}
+      ],
+      "override_builtin": true,
+      "priority": 20
+    },
+    {
+      "id": "use_gas_on_alien",
+      "verb": "use",
+      "noun": "riot_grenade",
+      "room": "deck_c_corridor",
+      "conditions": [
+        {"type": "carrying", "target": "riot_grenade"},
+        {"type": "flag_set", "target": "alien_awakened"},
+        {"type": "flag_unset", "target": "alien_stunned"}
+      ],
+      "actions": [
+        {"type": "destroy_item", "target": "riot_grenade"},
+        {"type": "set_flag", "target": "alien_stunned"},
+        {"type": "message", "value": "You pull the pin on the riot gas grenade and hurl it at the alien creature. The canister bursts in a cloud of thick, choking gas. The creature rears back, convulsing as the compound floods its respiratory system. It lets out a strangled shriek and collapses, twitching and wheezing. The path to the Escape Pod Bay is clear!"},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 20
+    },
+    {
+      "id": "launch_pod",
+      "verb": "use",
+      "noun": "escape_pod",
+      "room": "escape_pod_bay",
+      "conditions": [
+        {"type": "flag_set", "target": "pod_powered"}
+      ],
+      "actions": [
+        {"type": "message", "value": "You climb into the escape pod and strap in. Your hands find the launch controls. With a deep breath, you slam the LAUNCH button.\n\nExplosive bolts fire. The pod rockets away from Void Station Omega. Through the tiny viewport, you watch the station shrink — and then erupt in a blinding flash as the self-destruct detonates.\n\nYou made it. You're alive. The pod's beacon activates, sending a distress signal into the void. Somewhere out there, someone will hear it.\n\nYou escaped Void Station Omega."},
+        {"type": "add_score", "value": 20},
+        {"type": "game_over", "target": "", "value": "win"}
+      ],
+      "priority": 20
+    },
+    {
+      "id": "launch_pod_no_power",
+      "verb": "use",
+      "noun": "escape_pod",
+      "room": "escape_pod_bay",
+      "conditions": [
+        {"type": "flag_unset", "target": "pod_powered"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The escape pod's status panel reads 'INSUFFICIENT POWER'. You need an energy source to power it up."}
+      ],
+      "priority": 10
+    },
+    {
+      "id": "take_spacesuit",
+      "verb": "take",
+      "noun": "spacesuit",
+      "conditions": [
+        {"type": "here", "target": "spacesuit"},
+        {"type": "flag_unset", "target": "wearing_suit"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "spacesuit", "value": "__inventory__"},
+        {"type": "set_flag", "target": "wearing_suit"},
+        {"type": "message", "value": "You pull on the spacesuit. It's bulky but reassuring. The built-in oxygen supply activates — you won't need to worry about the station's failing life support."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "override_builtin": true,
+      "priority": 10
+    },
+    {
+      "id": "drop_flashlight_update",
+      "verb": "drop",
+      "noun": "flashlight",
+      "conditions": [
+        {"type": "carrying", "target": "flashlight"}
+      ],
+      "actions": [
+        {"type": "clear_flag", "target": "has_light"},
+        {"type": "message", "value": "The beam flickers off as you set it down."}
+      ],
+      "override_builtin": false,
+      "priority": 1
+    },
+    {
+      "id": "self_destruct_boom",
+      "verb": null,
+      "conditions": [
+        {"type": "flag_set", "target": "alien_awakened"},
+        {"type": "counter_le", "target": "self_destruct", "value": 0}
+      ],
+      "actions": [
+        {"type": "message", "value": "The self-destruct countdown reaches zero. A blinding flash engulfs the station.\n\nVoid Station Omega is destroyed — and you with it."},
+        {"type": "game_over", "target": "", "value": "lose"}
+      ],
+      "priority": 100
+    },
+    {
+      "id": "take_power_cell_score",
+      "verb": "take",
+      "noun": "power_cell",
+      "conditions": [
+        {"type": "here", "target": "power_cell"},
+        {"type": "flag_unset", "target": "got_power_cell"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "power_cell", "value": "__inventory__"},
+        {"type": "set_flag", "target": "got_power_cell"},
+        {"type": "message", "value": "Taken: alien power cell. It pulses warmly in your hand."},
+        {"type": "add_score", "value": 5}
+      ],
+      "once": true,
+      "override_builtin": true,
+      "priority": 10
+    },
+    {
+      "id": "take_adapter_score",
+      "verb": "take",
+      "noun": "adapter",
+      "conditions": [
+        {"type": "here", "target": "adapter"},
+        {"type": "flag_unset", "target": "got_adapter"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "adapter", "value": "__inventory__"},
+        {"type": "set_flag", "target": "got_adapter"},
+        {"type": "message", "value": "Taken: power adapter. Notes on it suggest it can interface alien tech with station systems."},
+        {"type": "add_score", "value": 5}
+      ],
+      "once": true,
+      "override_builtin": true,
+      "priority": 10
+    },
+    {
+      "id": "take_data_chip_score",
+      "verb": "take",
+      "noun": "data_chip",
+      "conditions": [
+        {"type": "here", "target": "data_chip"},
+        {"type": "flag_unset", "target": "got_data_chip"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "data_chip", "value": "__inventory__"},
+        {"type": "set_flag", "target": "got_data_chip"},
+        {"type": "message", "value": "Taken: data chip. It's labeled 'EMERGENCY PROTOCOLS - OVERRIDE CODES'."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "override_builtin": true,
+      "priority": 10
+    },
+    {
+      "id": "take_id_badge_score",
+      "verb": "take",
+      "noun": "id_badge",
+      "conditions": [
+        {"type": "here", "target": "id_badge"},
+        {"type": "flag_unset", "target": "got_id_badge"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "id_badge", "value": "__inventory__"},
+        {"type": "set_flag", "target": "got_id_badge"},
+        {"type": "message", "value": "Taken: Dr. Vasquez's ID badge. It has a biometric chip that might fool a bio-scanner."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "override_builtin": true,
+      "priority": 10
+    },
+    {
+      "id": "take_pry_bar_score",
+      "verb": "take",
+      "noun": "pry_bar",
+      "conditions": [
+        {"type": "here", "target": "pry_bar"},
+        {"type": "flag_unset", "target": "got_pry_bar"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "pry_bar", "value": "__inventory__"},
+        {"type": "set_flag", "target": "got_pry_bar"},
+        {"type": "message", "value": "Taken: pry bar. This hefty bar could force open stuck doors or hatches."},
+        {"type": "add_score", "value": 5}
+      ],
+      "once": true,
+      "override_builtin": true,
+      "priority": 10
+    }
+  ],
+  "timers": [
+    {
+      "name": "self_destruct_timer",
+      "counter": "self_destruct",
+      "interval": 1,
+      "on_zero_event": "self_destruct_boom",
+      "message_template": "*** SELF-DESTRUCT IN {value} TURNS ***",
+      "active": false
+    }
+  ]
+}

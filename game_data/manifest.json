@@ -1,0 +1,10 @@
+{
+  "title": "Void Station Omega",
+  "author": "Cave Systems",
+  "version": "1.0",
+  "max_score": 250,
+  "max_inventory": 10,
+  "start_room": "cryo_bay",
+  "intro_file": "intro.txt",
+  "help_file": "help.txt"
+}

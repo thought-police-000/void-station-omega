@@ -1,0 +1,160 @@
+[
+  {
+    "id": "pry_bar",
+    "name": "pry bar",
+    "description": "A sturdy metal pry bar, about two feet long. Heavy enough to force open a stuck hatch.",
+    "room_description": "A metal pry bar lies on the floor near one of the cryo-pods.",
+    "location": "medbay",
+    "aliases": ["bar", "prybar", "crowbar"]
+  },
+  {
+    "id": "keycard",
+    "name": "security keycard",
+    "description": "A plastic keycard with a magnetic strip. It reads 'DECK A - ALL ACCESS' with the station's logo.",
+    "room_description": "A security keycard lies on the floor near the door.",
+    "location": "deck_a_corridor_1",
+    "aliases": ["card", "key", "keycard"]
+  },
+  {
+    "id": "flashlight",
+    "name": "flashlight",
+    "description": "A heavy-duty station flashlight. The beam is bright and steady.",
+    "room_description": "A flashlight sits on the security desk.",
+    "location": "security",
+    "aliases": ["torch", "light", "lamp"]
+  },
+  {
+    "id": "power_cell",
+    "name": "alien power cell",
+    "description": "A hexagonal crystalline cell that pulses with a soft blue light. It radiates warmth. Alien technology far beyond human engineering. It's not quite the right shape for the station's reactor socket.",
+    "room_description": "A strange hexagonal power cell glows softly on a shelf, pulsing with alien energy.",
+    "location": "lab_c3",
+    "aliases": ["cell", "power cell", "alien cell"]
+  },
+  {
+    "id": "adapter",
+    "name": "power adapter",
+    "description": "A prototype adapter designed to interface alien technology with human systems. There are notes scrawled on it: 'Fits hex-cell to standard reactor socket.'",
+    "room_description": "A custom-built power adapter sits on a workbench, wires trailing from it.",
+    "location": "lab_c4",
+    "aliases": ["adapter"]
+  },
+  {
+    "id": "powered_cell",
+    "name": "adapted power cell",
+    "description": "The alien power cell fitted snugly into the human-made adapter. It pulses with contained energy, ready to interface with station systems.",
+    "room_description": "An adapted alien power cell hums with energy.",
+    "location": "__nowhere__",
+    "aliases": ["powered cell", "adapted cell", "powered_cell"]
+  },
+  {
+    "id": "research_notes",
+    "name": "research notes",
+    "description": "Dr. Elena Vasquez's research journal. The entries grow increasingly frantic:\n\n'Day 45: The specimen is unlike anything we've seen. Its crystalline structure defies analysis.'\n'Day 52: It responds to proximity. Bio-signatures seem to activate it.'\n'Day 61: I've locked the chamber with my biometric data. Only my hand scan can open it now. The specimen is too dangerous for general access.'\n'Day 63: God help us. It's loose.'",
+    "room_description": "A spiral-bound research journal lies on the counter, its pages dog-eared.",
+    "location": "lab_c1",
+    "aliases": ["notes", "journal", "research notes"]
+  },
+  {
+    "id": "id_badge",
+    "name": "Dr. Vasquez's ID badge",
+    "description": "A station ID badge for Dr. Elena Vasquez, Chief Xenobiologist. It has a biometric chip embedded in it that might fool a bio-scanner.",
+    "room_description": "A station ID badge is clipped to the collar of a discarded lab coat.",
+    "location": "lab_c2",
+    "aliases": ["badge", "id", "id badge", "bio sample", "biometric"]
+  },
+  {
+    "id": "artifact",
+    "name": "crystalline artifact",
+    "description": "A fist-sized crystalline structure that shifts between colors — violet, indigo, and deep blue. It vibrates with a frequency you can feel in your bones. It seems to contain enormous energy.",
+    "room_description": "A crystalline artifact pulses with otherworldly light on the pedestal.",
+    "location": "alien_chamber",
+    "aliases": ["artifact", "crystal", "crystalline"]
+  },
+  {
+    "id": "data_chip",
+    "name": "data chip",
+    "description": "A small data storage chip labeled 'EMERGENCY PROTOCOLS - OVERRIDE CODES'. This could be useful for bypassing sealed systems.",
+    "room_description": "A small data chip lies on the desk among scattered papers.",
+    "location": "bridge",
+    "aliases": ["chip", "data chip", "data"]
+  },
+  {
+    "id": "spacesuit",
+    "name": "spacesuit",
+    "description": "A standard EVA spacesuit, bulky but functional. It has a built-in oxygen supply good for several hours. Wearing this would protect against oxygen depletion.",
+    "room_description": "A spacesuit hangs in one of the lockers, still sealed in its storage bag.",
+    "location": "life_support",
+    "aliases": ["suit", "spacesuit", "eva suit"]
+  },
+  {
+    "id": "riot_grenade",
+    "name": "riot gas grenade",
+    "description": "A military-grade riot gas grenade. The canister is stamped 'CS-X COMPOUND — BROAD-SPECTRUM INCAPACITANT'. Designed to subdue hostile organisms through respiratory and neurological disruption. Should work on anything that breathes.",
+    "room_description": "A riot gas grenade sits in the one locker that's still sealed, visible through the mesh.",
+    "location": "__nowhere__",
+    "aliases": ["grenade", "gas grenade", "riot grenade", "gas", "riot gas"]
+  },
+  {
+    "id": "captains_log",
+    "name": "captain's log",
+    "description": "A personal data tablet belonging to Captain Torres. The last entry reads:\n\n'We're evacuating. Five of the seven pods are loaded. Vasquez stayed behind to secure the specimen chamber. I can't reach her on comms. There's one more pod, but we can't wait. The creature has reached Deck A.\n\nTo whoever finds this: the override code for the pod bay is 7439. The escape pod in Bay 6 needs external power — the station reserves aren't enough. God speed.\n\n- Capt. R. Torres'",
+    "room_description": "A data tablet lies on the captain's chair.",
+    "location": "command_center",
+    "aliases": ["log", "tablet", "captains log", "captain's log"]
+  },
+  {
+    "id": "terminal",
+    "name": "override terminal",
+    "description": "A wall-mounted terminal beside the pod bay blast door. The screen is cracked and dark — it needs a data chip to boot its override system.",
+    "room_description": "A damaged override terminal is mounted beside the blast door.",
+    "location": "deck_c_corridor",
+    "takeable": false,
+    "aliases": ["terminal", "computer", "console"]
+  },
+  {
+    "id": "reactor",
+    "name": "reactor",
+    "description": "The station's main reactor. A massive cylinder with an empty power cell socket. If you could find a compatible power source, you could restore full station power.",
+    "room_description": "",
+    "location": "reactor_room",
+    "takeable": false,
+    "aliases": ["reactor", "power core"]
+  },
+  {
+    "id": "bio_scanner",
+    "name": "biometric scanner",
+    "description": "A wall-mounted biometric scanner beside the sealed door. It reads palm prints and ID chips to verify authorized personnel.",
+    "room_description": "",
+    "location": "lab_c2",
+    "takeable": false,
+    "aliases": ["scanner", "bio scanner"]
+  },
+  {
+    "id": "escape_pod",
+    "name": "escape pod",
+    "description": "A single-occupant escape pod in Bay 6. Its status panel reads 'INSUFFICIENT POWER'. The launch system needs an external energy source.",
+    "room_description": "",
+    "location": "escape_pod_bay",
+    "takeable": false,
+    "aliases": ["pod", "escape pod"]
+  },
+  {
+    "id": "locker",
+    "name": "weapon locker",
+    "description": "A heavy-duty weapon locker. It's jammed shut, but you can see a riot gas grenade through the wire mesh. Maybe you could force it open.",
+    "room_description": "A jammed weapon locker is mounted on the wall.",
+    "location": "security",
+    "takeable": false,
+    "aliases": ["locker", "weapon locker"]
+  },
+  {
+    "id": "locker_open",
+    "name": "weapon locker",
+    "description": "A heavy-duty weapon locker, hanging open. The inside is empty.",
+    "room_description": "A weapon locker hangs open on the wall, its door bent from being pried.",
+    "location": "__nowhere__",
+    "takeable": false,
+    "aliases": ["locker", "weapon locker"]
+  }
+]

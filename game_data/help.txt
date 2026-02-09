@@ -1,0 +1,18 @@
+COMMANDS:
+  Movement:    NORTH (N), SOUTH (S), EAST (E), WEST (W), UP (U), DOWN (D)
+               or GO <direction>
+  Look around: LOOK (L)
+  Examine:     EXAMINE <item> (X <item>)
+  Take/Drop:   TAKE <item>, DROP <item>
+  Use:         USE <item>
+  Combine:     COMBINE <item> WITH <item>
+  Inventory:   INVENTORY (I)
+  Score:       SCORE
+  Save/Load:   SAVE, LOAD
+  Quit:        QUIT (Q)
+
+TIPS:
+  - Examine everything! Items often have important details.
+  - Some doors require keycards or special actions to open.
+  - If it's dark, find a light source first.
+  - Pay attention to computer terminals and notes.

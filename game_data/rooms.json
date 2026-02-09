@@ -1,0 +1,237 @@
+[
+  {
+    "id": "cryo_bay",
+    "name": "Cryo Bay",
+    "description": "Rows of cryo-pods line the walls of this frigid chamber. Most are empty, their lids hanging open. Frost clings to every surface. Emergency lights pulse a dull red. Your pod, C-7, is the only one that was still sealed. A heavy hatch leads SOUTH into a corridor, but it's wedged shut. To the EAST is the Medbay.",
+    "exits": [
+      {"direction": "south", "destination": "deck_a_corridor_1", "locked": true, "lock_flag": "hatch_pried", "lock_message": "The hatch is wedged shut. Maybe you could force it open with something."},
+      {"direction": "east", "destination": "medbay"}
+    ]
+  },
+  {
+    "id": "medbay",
+    "name": "Medbay",
+    "description": "A small medical bay with overturned trays and scattered supplies. A surgical gurney sits in the center under a flickering light. Glass crunches under your boots from shattered cabinet doors. The Cryo Bay is to the WEST.",
+    "exits": [
+      {"direction": "west", "destination": "cryo_bay"}
+    ]
+  },
+  {
+    "id": "deck_a_corridor_1",
+    "name": "Deck A Corridor (Fore)",
+    "description": "A long corridor stretching through the crew deck. Pipes run along the ceiling, dripping condensation. The walls are scratched with deep gouges — something with claws came through here. The Cryo Bay hatch is to the NORTH. The corridor continues SOUTH. The Command Center is EAST, behind a security door.",
+    "exits": [
+      {"direction": "north", "destination": "cryo_bay"},
+      {"direction": "south", "destination": "deck_a_corridor_2"},
+      {"direction": "east", "destination": "command_center", "locked": true, "lock_flag": "has_keycard_a", "lock_message": "The security door requires a keycard to open."}
+    ]
+  },
+  {
+    "id": "command_center",
+    "name": "Command Center",
+    "description": "The nerve center of the station. Monitors flicker with static, and a central holographic display shows the station's failing systems in angry red. A large viewport looks out into the void of space — stars and distant nebulae. The corridor is WEST. The Bridge is NORTH.",
+    "exits": [
+      {"direction": "west", "destination": "deck_a_corridor_1"},
+      {"direction": "north", "destination": "bridge"}
+    ]
+  },
+  {
+    "id": "bridge",
+    "name": "Bridge",
+    "description": "The main bridge of Void Station Omega. The captain's chair sits empty in the center, facing a massive wraparound viewport. Control consoles line the walls, most dark. The navigation computer still glows faintly. The Command Center is SOUTH.",
+    "exits": [
+      {"direction": "south", "destination": "command_center"}
+    ]
+  },
+  {
+    "id": "deck_a_corridor_2",
+    "name": "Deck A Corridor (Aft)",
+    "description": "The corridor continues here, connecting the crew areas. Emergency placards on the walls point toward escape routes. Security is to the EAST. The Mess Hall is to the WEST. The corridor continues NORTH, and Officers Quarters are SOUTH. A service ladder leads DOWN to Deck B.",
+    "exits": [
+      {"direction": "north", "destination": "deck_a_corridor_1"},
+      {"direction": "east", "destination": "security"},
+      {"direction": "west", "destination": "mess_hall"},
+      {"direction": "south", "destination": "officers_quarters"},
+      {"direction": "down", "destination": "deck_b_corridor_1"}
+    ]
+  },
+  {
+    "id": "security",
+    "name": "Security Office",
+    "description": "A reinforced room that served as the station's security hub. Weapon lockers line one wall — all empty except one. Surveillance monitors show static from dead cameras. A desk is cluttered with papers and a cold cup of coffee. The corridor is WEST.",
+    "exits": [
+      {"direction": "west", "destination": "deck_a_corridor_2"}
+    ]
+  },
+  {
+    "id": "officers_quarters",
+    "name": "Officers Quarters",
+    "description": "Private quarters for the station's senior staff. Three small rooms branch off a common area. The furnishings are spartan but functional. Personal effects are scattered about — whoever lived here left in a hurry. The corridor is NORTH.",
+    "exits": [
+      {"direction": "north", "destination": "deck_a_corridor_2"}
+    ]
+  },
+  {
+    "id": "mess_hall",
+    "name": "Mess Hall",
+    "description": "The communal dining area. Tables and chairs are overturned. Trays of half-eaten food sit decomposing. The kitchen area behind a counter is a mess of broken dishes. A wall-mounted screen still loops a cheerful corporate welcome video on mute. The corridor is EAST.",
+    "exits": [
+      {"direction": "east", "destination": "deck_a_corridor_2"}
+    ]
+  },
+  {
+    "id": "deck_b_corridor_1",
+    "name": "Deck B Corridor (Fore)",
+    "description": "The science deck corridor. The lighting here is brighter — the labs demanded better illumination. Bio-hazard warnings are posted on several doors. Lab C-1 is EAST. Lab C-2 is WEST. The corridor continues SOUTH. A ladder leads UP to Deck A.",
+    "exits": [
+      {"direction": "up", "destination": "deck_a_corridor_2"},
+      {"direction": "east", "destination": "lab_c1"},
+      {"direction": "west", "destination": "lab_c2"},
+      {"direction": "south", "destination": "deck_b_corridor_2"}
+    ]
+  },
+  {
+    "id": "lab_c1",
+    "name": "Laboratory C-1 (Chemistry)",
+    "description": "A chemistry lab filled with glass apparatus and sealed containers. Beakers of strange fluids line the countertops — some still bubbling. A fume hood hums in the corner. Notes are scattered across a workbench. The corridor is WEST.",
+    "exits": [
+      {"direction": "west", "destination": "deck_b_corridor_1"}
+    ]
+  },
+  {
+    "id": "lab_c2",
+    "name": "Laboratory C-2 (Xenobiology)",
+    "description": "The xenobiology lab. This is where they studied the alien specimens. Containment tanks line the walls — most are shattered, their contents long gone. Claw marks score the reinforced glass. A biometric scanner guards a sealed door to the SOUTH. The corridor is EAST.",
+    "exits": [
+      {"direction": "east", "destination": "deck_b_corridor_1"},
+      {"direction": "south", "destination": "alien_chamber", "locked": true, "lock_flag": "bio_lock_opened", "lock_message": "A biometric scanner blinks red beside the sealed door. It requires authorized personnel."}
+    ]
+  },
+  {
+    "id": "alien_chamber",
+    "name": "Alien Specimen Chamber",
+    "description": "A vast, dimly lit chamber hidden behind the xenobiology lab. The air is thick and humid, with an alien, spicy scent. Strange organic structures cling to the walls — part of the station, part something else. In the center, on a pedestal of fused metal and crystal, sits a pulsing crystalline artifact that thrums with energy. The lab is NORTH.",
+    "exits": [
+      {"direction": "north", "destination": "lab_c2"}
+    ],
+    "first_visit_text": "You feel a vibration in your chest as you enter. The crystalline artifact seems to react to your presence, glowing brighter."
+  },
+  {
+    "id": "deck_b_corridor_2",
+    "name": "Deck B Corridor (Aft)",
+    "description": "The aft section of the science deck corridor. Lab C-3 is EAST. Lab C-4 is WEST. The Server Room is SOUTH. The corridor continues NORTH. The Observation Deck is UP via a spiral staircase. A cargo lift leads DOWN to Deck C.",
+    "exits": [
+      {"direction": "north", "destination": "deck_b_corridor_1"},
+      {"direction": "east", "destination": "lab_c3"},
+      {"direction": "west", "destination": "lab_c4"},
+      {"direction": "south", "destination": "server_room"},
+      {"direction": "up", "destination": "observation_deck"},
+      {"direction": "down", "destination": "deck_c_corridor"}
+    ]
+  },
+  {
+    "id": "lab_c3",
+    "name": "Laboratory C-3 (Physics)",
+    "description": "A physics lab with heavy equipment bolted to the floor. A particle accelerator ring runs along one wall. Whiteboards are covered in equations. The corridor is WEST.",
+    "exits": [
+      {"direction": "west", "destination": "deck_b_corridor_2"}
+    ]
+  },
+  {
+    "id": "lab_c4",
+    "name": "Laboratory C-4 (Engineering Research)",
+    "description": "An applied engineering research lab. Workbenches are covered with half-assembled devices and prototype components. A 3D fabricator sits in the corner, its display dark. The corridor is EAST.",
+    "exits": [
+      {"direction": "east", "destination": "deck_b_corridor_2"}
+    ]
+  },
+  {
+    "id": "server_room",
+    "name": "Server Room",
+    "description": "Rows of server racks hum and blink in this climate-controlled room. The station's central computer core processes data here. A damaged terminal sits on a desk, sparking occasionally. The corridor is NORTH.",
+    "exits": [
+      {"direction": "north", "destination": "deck_b_corridor_2"}
+    ]
+  },
+  {
+    "id": "observation_deck",
+    "name": "Observation Deck",
+    "description": "A breathtaking panoramic viewing area. The entire ceiling and far wall are transparent, revealing the star field and a nearby gas giant swirling with crimson storms. Comfortable seating is arranged in a semicircle. It's peaceful here — a stark contrast to the rest of the station. The spiral staircase leads DOWN.",
+    "exits": [
+      {"direction": "down", "destination": "deck_b_corridor_2"}
+    ]
+  },
+  {
+    "id": "deck_c_corridor",
+    "name": "Deck C Corridor",
+    "description": "The engineering deck corridor. Pipes and conduits cover every surface. The air is warmer here, and you can hear the distant hum of the reactor. The Reactor Room is EAST. Life Support is WEST. A maintenance shaft descends DOWN. The Cargo Hold is SOUTH. A heavy blast door leads NORTH to the Escape Pod Bay. A cargo lift goes UP to Deck B.",
+    "exits": [
+      {"direction": "east", "destination": "reactor_room"},
+      {"direction": "west", "destination": "life_support"},
+      {"direction": "down", "destination": "maintenance_shaft"},
+      {"direction": "south", "destination": "cargo_hold"},
+      {"direction": "up", "destination": "deck_b_corridor_2"},
+      {"direction": "north", "destination": "escape_pod_bay", "locked": true, "lock_flag": "pod_bay_unsealed", "lock_message": "The blast door to the Escape Pod Bay is sealed with an electronic lock. The override terminal beside it is dark."}
+    ]
+  },
+  {
+    "id": "reactor_room",
+    "name": "Reactor Room",
+    "description": "The station's power core dominates this cavernous space. The reactor is a massive cylinder covered in glowing conduits — but most are dark. The main power cell socket is empty, leaving the station running on emergency reserves. A control panel monitors reactor status. The corridor is WEST.",
+    "exits": [
+      {"direction": "west", "destination": "deck_c_corridor"}
+    ]
+  },
+  {
+    "id": "life_support",
+    "name": "Life Support",
+    "description": "The atmospheric processing center. Massive air scrubbers cycle overhead. Readouts show oxygen levels slowly declining. An EVA prep station is in the corner with lockers for spacesuits. The corridor is EAST.",
+    "exits": [
+      {"direction": "east", "destination": "deck_c_corridor"}
+    ]
+  },
+  {
+    "id": "maintenance_shaft",
+    "name": "Maintenance Shaft",
+    "description": "A narrow vertical shaft connecting the decks, used for maintenance access. Metal rungs are bolted into the wall. It's completely dark down here — the emergency lights don't reach this far.",
+    "dark": true,
+    "dark_description": "The maintenance shaft is pitch black. You can hear dripping water and distant mechanical groans. Without a light source, you might fall to your death.",
+    "exits": [
+      {"direction": "up", "destination": "deck_c_corridor"},
+      {"direction": "down", "destination": "eva_prep"}
+    ]
+  },
+  {
+    "id": "eva_prep",
+    "name": "EVA Preparation Room",
+    "description": "A room for preparing extravehicular activities. Suit racks line the walls, mostly empty. Helmets and glove compartments are labeled by crew member. The inner airlock door is to the SOUTH. The maintenance shaft goes UP.",
+    "exits": [
+      {"direction": "up", "destination": "maintenance_shaft"},
+      {"direction": "south", "destination": "airlock"}
+    ]
+  },
+  {
+    "id": "airlock",
+    "name": "Airlock",
+    "description": "The main airlock. A heavy inner door seals this small chamber from the EVA Prep room to the NORTH. The outer door, with its small viewport, shows nothing but stars. Warning labels cover every surface. You wouldn't want to open that outer door without a suit.",
+    "exits": [
+      {"direction": "north", "destination": "eva_prep"}
+    ]
+  },
+  {
+    "id": "cargo_hold",
+    "name": "Cargo Hold",
+    "description": "A vast open space filled with shipping containers and supply crates. Many have been torn open, their contents scattered. The overhead crane system hangs motionless. The corridor is NORTH.",
+    "exits": [
+      {"direction": "north", "destination": "deck_c_corridor"}
+    ]
+  },
+  {
+    "id": "escape_pod_bay",
+    "name": "Escape Pod Bay",
+    "description": "The station's emergency evacuation point. Six pod bays line the outer wall — five are empty, their pods long gone. Bay 6 still holds a single escape pod, but its status panel shows INSUFFICIENT POWER. A launch control terminal is mounted on the wall. The blast door leads SOUTH.",
+    "exits": [
+      {"direction": "south", "destination": "deck_c_corridor"}
+    ]
+  }
+]
