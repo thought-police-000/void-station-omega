@@ -1,0 +1,152 @@
+[
+  {
+    "id": "credit_chit",
+    "name": "credit chit",
+    "description": "A standard Imperial credit chit loaded with 500 credits. Enough to buy supplies on a backwater world like this.",
+    "room_description": "A credit chit lies on the deck near the locker.",
+    "location": "ship_interior",
+    "aliases": ["credits", "chit", "money", "credit"]
+  },
+  {
+    "id": "glow_rod",
+    "name": "glow rod",
+    "description": "A standard-issue glow rod — squeeze the handle and it produces a steady white beam. Good for several hundred hours.",
+    "room_description": "A glow rod sits in a charging cradle on the bulkhead.",
+    "location": "ship_interior",
+    "aliases": ["rod", "glow", "light", "lamp", "torch", "flashlight"]
+  },
+  {
+    "id": "pilgrim_robes",
+    "name": "pilgrim robes",
+    "description": "A set of plain white robes worn by pilgrims of the Divine Light. They smell faintly of incense. Wearing these would let you pass as one of the faithful.",
+    "room_description": "A bundle of white pilgrim robes lies here.",
+    "location": "__nowhere__",
+    "aliases": ["robes", "robe", "pilgrim robes", "white robes"]
+  },
+  {
+    "id": "acolyte_medallion",
+    "name": "acolyte's medallion",
+    "description": "A bronze medallion on a chain, stamped with the sunburst symbol of the Divine Light. Acolytes wear these to access restricted areas of the temple. This one was left on a bedside chest.",
+    "room_description": "A bronze medallion on a chain lies on one of the bedside chests.",
+    "location": "acolyte_quarters",
+    "aliases": ["medallion", "medal", "chain", "bronze"]
+  },
+  {
+    "id": "sleeping_draught",
+    "name": "sleeping draught",
+    "description": "A small glass vial of herbal sleeping draught. The label reads 'Two drops for restful sleep.' The acolytes must use these — temple life starts before dawn.",
+    "room_description": "A small glass vial of sleeping draught sits on a bedside chest.",
+    "location": "acolyte_quarters",
+    "aliases": ["draught", "sleeping", "vial", "sedative", "drug"]
+  },
+  {
+    "id": "ancient_codex",
+    "name": "ancient codex",
+    "description": "A heavy volume bound in a metallic material that doesn't corrode. The pages are covered in dense alien script — geometric symbols arranged in spiralling patterns. You can't read any of it without some kind of translation aid.",
+    "room_description": "A strange metallic-bound codex sits on a high shelf, out of place among the paper manuscripts.",
+    "location": "scriptorium",
+    "aliases": ["codex", "book", "tome", "volume", "text"]
+  },
+  {
+    "id": "translator",
+    "name": "translation device",
+    "description": "A small handheld device of obvious offworld manufacture — sleek, with a display screen and a lens for scanning text. Someone left it here, perhaps a previous traveller who investigated the temple's secrets and never finished the job.",
+    "room_description": "A small electronic device is wedged behind a loose stone in the railing.",
+    "location": "bell_tower",
+    "aliases": ["translator", "device", "scanner", "translation"]
+  },
+  {
+    "id": "sacred_wine",
+    "name": "sacred wine",
+    "description": "A clay flask of the temple's sacred wine — deep red, sweet, and potent. It's used in temple ceremonies and offered to honoured guests. The guard in the antechamber looked like he'd enjoy a drink.",
+    "room_description": "A clay flask of sacred wine stands on a stone bench.",
+    "location": "meditation_garden",
+    "aliases": ["wine", "flask", "drink", "sacred wine"]
+  },
+  {
+    "id": "drugged_wine",
+    "name": "drugged wine",
+    "description": "The sacred wine, now laced with a generous dose of sleeping draught. One cup of this would put a grown man out for hours.",
+    "room_description": "A flask of wine sits here.",
+    "location": "__nowhere__",
+    "aliases": ["wine", "flask", "drink", "drugged wine", "drugged"]
+  },
+  {
+    "id": "ancient_keycard",
+    "name": "ancient keycard",
+    "description": "A thin card made of the same strange metal as the alien walls. Geometric patterns are etched into its surface. It hums faintly when you hold it — still powered after millennia.",
+    "room_description": "A thin metallic card lies in one of the open compartments, faintly glowing.",
+    "location": "storage_vault",
+    "aliases": ["keycard", "card", "key", "alien card"]
+  },
+  {
+    "id": "ship_key",
+    "name": "ship ignition key",
+    "description": "Your ship's ignition key — a coded cylinder that interfaces with the Aster Lain's bridge console. Without this, the ship goes nowhere. The High Priest took it as an 'offering to the Divine.'",
+    "room_description": "A coded cylinder — your ship's ignition key! — sits in the display case, which the High Priest left unlocked.",
+    "location": "high_priest_chamber",
+    "aliases": ["key", "ignition", "cylinder", "ship key", "ignition key"]
+  },
+  {
+    "id": "artifact_core",
+    "name": "artifact data core",
+    "description": "A small crystalline module you extracted from the control console. It contains the operational records of the alien complex — proof that the 'Divine Light' is ancient technology, not a god. This could change everything on this world.",
+    "room_description": "A crystalline data core hums softly on the console.",
+    "location": "__nowhere__",
+    "aliases": ["core", "data core", "crystal", "module", "data"]
+  },
+  {
+    "id": "market_stall",
+    "name": "cloth merchant's stall",
+    "description": "A stall hung with bolts of rough-spun fabric and rows of white pilgrim robes. A sign reads: 'PILGRIM ROBES — 50 CREDITS.' The merchant eyes you expectantly.",
+    "room_description": "",
+    "location": "market_square",
+    "takeable": false,
+    "aliases": ["stall", "merchant", "cloth", "vendor"]
+  },
+  {
+    "id": "pool_basin",
+    "name": "Sacred Pool",
+    "description": "The pool glows with a steady blue-white light from below. The water is warm and faintly luminescent. The faithful believe it heals all ailments. Looking closely, you can see the glow comes from deep beneath the stone floor — there's something down there, far below the pool bed.",
+    "room_description": "",
+    "location": "sacred_pool",
+    "takeable": false,
+    "aliases": ["pool", "water", "basin"]
+  },
+  {
+    "id": "control_console",
+    "name": "alien control console",
+    "description": "A curved console covered in alien displays and controls. Readouts scroll in geometric alien script. If you could operate this, you might be able to shut down the complex's power — or at least prove that the 'miracles' have a technological source.",
+    "room_description": "",
+    "location": "control_room",
+    "takeable": false,
+    "aliases": ["console", "controls", "computer", "terminal"]
+  },
+  {
+    "id": "temple_guard",
+    "name": "temple guard",
+    "description": "A burly man in ceremonial armour, standing rigidly before the High Priest's door. He has the look of someone who enjoys his job a bit too much. He doesn't seem open to bribery, but everyone has a weakness.",
+    "room_description": "A burly temple guard blocks the door to the south.",
+    "location": "high_priest_antechamber",
+    "takeable": false,
+    "aliases": ["guard", "soldier", "sentry"]
+  },
+  {
+    "id": "guard_sleeping",
+    "name": "sleeping guard",
+    "description": "The temple guard is slumped against the wall, snoring loudly. The empty wine flask lies at his feet. He'll be out for hours.",
+    "room_description": "The temple guard is slumped against the wall, fast asleep.",
+    "location": "__nowhere__",
+    "takeable": false,
+    "aliases": ["guard", "soldier", "sentry"]
+  },
+  {
+    "id": "altar",
+    "name": "golden altar",
+    "description": "A golden altar that radiates a faint warmth. The faithful kneel before it in prayer. Up close, you notice the glow isn't coming from the gold — it's coming through the gold, from somewhere beneath the floor. The altar is bolted to the stone and immovable.",
+    "room_description": "",
+    "location": "grand_nave",
+    "takeable": false,
+    "aliases": ["altar"]
+  }
+]

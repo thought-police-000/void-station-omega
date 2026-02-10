@@ -1,0 +1,21 @@
+COMMANDS
+--------
+GO <direction>       Move: N S E W UP DOWN (or just the letter)
+LOOK (L)             Describe the current room
+EXAMINE <item> (X)   Inspect an item closely
+TAKE <item>          Pick up an item
+DROP <item>          Put down an item
+USE <item>           Use an item in context
+COMBINE <x> WITH <y> Combine two inventory items
+INVENTORY (I)        List carried items
+SCORE                Show current score
+SAVE / LOAD          Save or restore progress
+QUIT (Q)             Exit the game
+
+TIPS
+----
+- Examine everything. Items and rooms often contain clues.
+- If you're stuck, think about what items you have and where
+  you might use them.
+- Some doors require the right item or action to open.
+- Pay attention to what NPCs and documents tell you.

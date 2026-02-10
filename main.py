@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -11,27 +12,31 @@ from engine.world import World
 from engine.game_state import GameState
 from engine.events import EventManager
 from engine.actions import BUILTIN_HANDLERS, handle_look
-from engine.display import print_messages, print_title, print_separator
+from engine.display import Pager, print_messages, print_title, print_separator
 from engine.save import save_game, load_game
 from engine.loader import (
     load_manifest, load_rooms, load_items, load_events,
     load_vocabulary, load_text_file, validate_world,
 )
 
-DATA_DIR = Path(__file__).parent / "game_data"
+DEFAULT_DATA_DIR = Path(__file__).parent / "game_data"
 
 
-def run(input_fn=None) -> int:
+def run(input_fn=None, data_dir: Path | None = None) -> int:
     """Run the game. Returns final score. input_fn overrides input() for testing."""
+    interactive = input_fn is None
     if input_fn is None:
         input_fn = input
+    if data_dir is None:
+        data_dir = DEFAULT_DATA_DIR
+    pager = Pager(input_fn=input_fn, enabled=interactive)
 
     # Load game data
-    manifest = load_manifest(DATA_DIR)
-    rooms = load_rooms(DATA_DIR)
-    items = load_items(DATA_DIR)
-    events, timers = load_events(DATA_DIR)
-    vocabulary = load_vocabulary(DATA_DIR)
+    manifest = load_manifest(data_dir)
+    rooms = load_rooms(data_dir)
+    items = load_items(data_dir)
+    events, timers = load_events(data_dir)
+    vocabulary = load_vocabulary(data_dir)
 
     # Validate
     errors = validate_world(rooms, items, events)
@@ -53,27 +58,28 @@ def run(input_fn=None) -> int:
     event_mgr.register_timers(state)
 
     # Intro
-    intro = load_text_file(DATA_DIR, manifest.intro_file)
-    help_text = load_text_file(DATA_DIR, manifest.help_file)
+    intro = load_text_file(data_dir, manifest.intro_file)
+    help_text = load_text_file(data_dir, manifest.help_file)
 
-    print_title(manifest.title)
+    print_title(manifest.title, pager)
     if intro:
-        print(intro)
-    print_separator()
+        pager.write(intro)
+    print_separator(pager)
 
     # Show starting room
     look_cmd = ParsedCommand(raw="look", verb="look")
     msgs = handle_look(look_cmd, state, world)
-    print_messages(msgs)
+    print_messages(msgs, pager)
 
     # Run starting auto-events
     auto_msgs = event_mgr.run_auto_events(state, world)
     if auto_msgs:
-        print_messages(auto_msgs)
+        print_messages(auto_msgs, pager)
 
     # Main loop
     while not state.game_over:
-        print()
+        pager.write()
+        pager.reset()
         try:
             raw = input_fn("> ")
         except (EOFError, KeyboardInterrupt):
@@ -86,25 +92,25 @@ def run(input_fn=None) -> int:
         # Meta-commands (not counted as turns)
         lower = raw.strip().lower()
         if lower in ("quit", "exit", "q"):
-            print("Thanks for playing! Final score: "
-                  f"{state.score}/{state.max_score}")
+            pager.write("Thanks for playing! Final score: "
+                        f"{state.score}/{state.max_score}")
             break
         if lower == "save":
-            print(save_game(state, world))
+            pager.write(save_game(state, world))
             continue
         if lower == "load":
-            print(load_game(state, world))
+            pager.write(load_game(state, world))
             # Redisplay room
             msgs = handle_look(look_cmd, state, world)
-            print_messages(msgs)
+            print_messages(msgs, pager)
             continue
         if lower in ("help", "?"):
             if help_text:
-                print(help_text)
+                pager.write(help_text)
             else:
-                print("Available commands: LOOK, GO <dir>, TAKE, DROP, "
-                      "EXAMINE, USE, COMBINE, INVENTORY, SCORE, SAVE, "
-                      "LOAD, QUIT")
+                pager.write("Available commands: LOOK, GO <dir>, TAKE, DROP, "
+                            "EXAMINE, USE, COMBINE, INVENTORY, SCORE, SAVE, "
+                            "LOAD, QUIT")
             continue
 
         # Parse command
@@ -130,33 +136,38 @@ def run(input_fn=None) -> int:
                 messages.append(f"I don't know how to '{cmd.verb}'.")
 
         # 3. Display results
-        print_messages(messages)
+        print_messages(messages, pager)
 
         # 4. Run auto-events (room-enter triggers, etc.)
         auto_msgs = event_mgr.run_auto_events(state, world)
         if auto_msgs:
-            print_messages(auto_msgs)
+            print_messages(auto_msgs, pager)
 
         # 5. Tick timers
         timer_msgs = event_mgr.tick_timers(state, world)
         if timer_msgs:
-            print_messages(timer_msgs)
+            print_messages(timer_msgs, pager)
 
         # 6. Check game over
         if state.game_over:
             if state.won:
-                print_separator()
-                print(f"*** CONGRATULATIONS! You escaped! ***")
-                print(f"Final score: {state.score}/{state.max_score}")
-                print(f"Total turns: {state.turns}")
+                print_separator(pager)
+                pager.write(f"*** CONGRATULATIONS! You escaped! ***")
+                pager.write(f"Final score: {state.score}/{state.max_score}")
+                pager.write(f"Total turns: {state.turns}")
             else:
-                print_separator()
-                print("*** GAME OVER ***")
-                print(f"Score: {state.score}/{state.max_score}")
+                print_separator(pager)
+                pager.write("*** GAME OVER ***")
+                pager.write(f"Score: {state.score}/{state.max_score}")
             break
 
     return state.score
 
 
 if __name__ == "__main__":
-    run()
+    parser = argparse.ArgumentParser(description="Text adventure engine")
+    parser.add_argument("data_dir", nargs="?", default=None,
+                        help="path to game data directory (default: game_data/)")
+    args = parser.parse_args()
+    data_dir = Path(args.data_dir) if args.data_dir else None
+    run(data_dir=data_dir)

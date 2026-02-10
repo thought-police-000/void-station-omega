@@ -1,0 +1,241 @@
+[
+  {
+    "id": "landing_pad",
+    "name": "Starport Landing Pad",
+    "description": "A cracked ferrocrete pad baking under a pale orange sun. Your free trader, the Aster Lain, sits here with a magnetic clamp on her landing struts — impounded by the local theocracy. The starport office is EAST. A dusty road leads SOUTH into the town market. You can board the ship to the NORTH.",
+    "exits": [
+      {"direction": "north", "destination": "ship_interior"},
+      {"direction": "east", "destination": "starport_office"},
+      {"direction": "south", "destination": "market_square"}
+    ]
+  },
+  {
+    "id": "ship_interior",
+    "name": "Aster Lain — Main Cabin",
+    "description": "The familiar interior of your ship. The bridge consoles are dark — the authorities pulled the ignition key when they impounded her. Your gear locker is open, mostly stripped by customs. A few useful things remain.",
+    "exits": [
+      {"direction": "south", "destination": "landing_pad"}
+    ]
+  },
+  {
+    "id": "starport_office",
+    "name": "Starport Customs Office",
+    "description": "A sweltering office staffed by clerks in grey robes. A sign reads: 'ALL OFFWORLDERS MUST PRESENT THEMSELVES AT THE TEMPLE OF THE DIVINE LIGHT — BY ORDER OF THE THEOCRATIC COUNCIL.' The clerk behind the counter eyes you with barely concealed suspicion. Your ship key is not here — it was sent to the High Priest as an 'offering.' The landing pad is WEST.",
+    "exits": [
+      {"direction": "west", "destination": "landing_pad"}
+    ]
+  },
+  {
+    "id": "market_square",
+    "name": "Market Square",
+    "description": "A noisy open-air market under canvas awnings. Vendors hawk local produce, rough textiles, and religious trinkets. The tech level is low — most goods are hand-crafted. A cloth merchant sells pilgrim robes to the faithful making their way to the temple. A narrow alley runs WEST behind the stalls. The tavern is EAST. The landing pad is NORTH. Pilgrim Road continues SOUTH.",
+    "exits": [
+      {"direction": "north", "destination": "landing_pad"},
+      {"direction": "east", "destination": "tavern"},
+      {"direction": "west", "destination": "back_alley"},
+      {"direction": "south", "destination": "pilgrim_road"}
+    ]
+  },
+  {
+    "id": "tavern",
+    "name": "The Crater — Spacer Bar",
+    "description": "A dim, low-ceilinged dive that caters to the few offworlders who pass through. Ceiling fans push the hot air around. A bartender with a cybernetic eye polishes glasses behind the counter. Faded star charts are tacked to the walls. The market is WEST.",
+    "exits": [
+      {"direction": "west", "destination": "market_square"}
+    ]
+  },
+  {
+    "id": "back_alley",
+    "name": "Back Alley",
+    "description": "A narrow alley behind the market stalls, strewn with crates and refuse. The air smells of overripe fruit and machine oil. A rusted grate in the ground leads DOWN into darkness. The market is EAST.",
+    "exits": [
+      {"direction": "east", "destination": "market_square"},
+      {"direction": "down", "destination": "escape_tunnel", "locked": true, "lock_flag": "tunnel_open", "lock_message": "The grate is rusted shut. You can't budge it from this side."}
+    ]
+  },
+  {
+    "id": "pilgrim_road",
+    "name": "Pilgrim Road",
+    "description": "A dusty road winding uphill toward the Temple of the Divine Light. Pilgrims in white robes trudge along in small groups, chanting softly. The temple's golden dome gleams above the rooftops. The market is NORTH. The temple gate is SOUTH.",
+    "exits": [
+      {"direction": "north", "destination": "market_square"},
+      {"direction": "south", "destination": "temple_gate"}
+    ]
+  },
+  {
+    "id": "temple_gate",
+    "name": "Temple Gate",
+    "description": "A grand stone archway flanked by two temple guards in ceremonial armour. Beyond the gate, a paved courtyard leads to the Temple of the Divine Light. The guards scrutinise everyone who enters — only the faithful in pilgrim robes are admitted. Pilgrim Road leads NORTH.",
+    "exits": [
+      {"direction": "north", "destination": "pilgrim_road"},
+      {"direction": "south", "destination": "temple_courtyard", "locked": true, "lock_flag": "wearing_robes", "lock_message": "The temple guards bar your way. 'Only pilgrims of the Divine Light may enter. You must wear the robes of the faithful.'"}
+    ]
+  },
+  {
+    "id": "temple_courtyard",
+    "name": "Temple Courtyard",
+    "description": "A broad courtyard paved with white stone. A fountain burbles in the centre, and incense smoke drifts from bronze censers. Acolytes in saffron robes move between the buildings. The Grand Nave of the temple is SOUTH. Acolyte quarters are EAST. The meditation garden is WEST. The gate is NORTH.",
+    "exits": [
+      {"direction": "north", "destination": "temple_gate"},
+      {"direction": "south", "destination": "grand_nave"},
+      {"direction": "east", "destination": "acolyte_quarters"},
+      {"direction": "west", "destination": "meditation_garden"}
+    ]
+  },
+  {
+    "id": "acolyte_quarters",
+    "name": "Acolyte Quarters",
+    "description": "A long dormitory lined with simple cots. Personal effects are stored in small wooden chests at the foot of each bed. A schedule on the wall shows prayer times. The acolytes are currently at evening devotion. The courtyard is WEST.",
+    "exits": [
+      {"direction": "west", "destination": "temple_courtyard"}
+    ]
+  },
+  {
+    "id": "meditation_garden",
+    "name": "Meditation Garden",
+    "description": "A walled garden of alien succulents and flowering vines. Stone benches surround a small reflecting pool. The air is heavy with the scent of night-blooming jasmine. A bell tower rises overhead — a spiral staircase leads UP. The courtyard is EAST.",
+    "exits": [
+      {"direction": "east", "destination": "temple_courtyard"},
+      {"direction": "up", "destination": "bell_tower"}
+    ]
+  },
+  {
+    "id": "bell_tower",
+    "name": "Bell Tower",
+    "description": "A cramped platform at the top of the tower. A massive bronze bell hangs above you. Through the open arches you can see the entire settlement — the dusty starport, the market, and beyond the town walls, an endless rust-coloured desert. Someone has scratched words into the stone railing: 'THE LIGHT IS A LIE.' The garden is DOWN.",
+    "exits": [
+      {"direction": "down", "destination": "meditation_garden"}
+    ]
+  },
+  {
+    "id": "grand_nave",
+    "name": "Grand Nave",
+    "description": "The main hall of the Temple of the Divine Light. Massive stone columns support a vaulted ceiling painted with scenes of divine miracles. At the far end, a golden altar radiates a faint, warm glow — the faithful kneel before it in silent prayer. The Scriptorium is EAST, behind a locked door marked 'ORDAINED ONLY.' The Sacred Pool chamber is WEST. The High Priest's antechamber is SOUTH. The courtyard is NORTH.",
+    "exits": [
+      {"direction": "north", "destination": "temple_courtyard"},
+      {"direction": "east", "destination": "scriptorium", "locked": true, "lock_flag": "scriptorium_unlocked", "lock_message": "The scriptorium door is locked. A medallion-shaped recess is set into the lock."},
+      {"direction": "west", "destination": "sacred_pool"},
+      {"direction": "south", "destination": "high_priest_antechamber"}
+    ]
+  },
+  {
+    "id": "scriptorium",
+    "name": "Scriptorium",
+    "description": "A quiet library filled with shelves of hand-copied religious texts and scrolls. Candles flicker in wall sconces. Most of the texts are liturgical — hymns, prayers, histories of the temple. But on a high shelf, one volume stands out: bound in a material that is clearly not local.",
+    "exits": [
+      {"direction": "west", "destination": "grand_nave"}
+    ]
+  },
+  {
+    "id": "sacred_pool",
+    "name": "Sacred Pool Chamber",
+    "description": "A circular chamber housing the Sacred Pool of Healing — the temple's greatest miracle. The pool glows with a soft blue-white light from below. Pilgrims come here to be healed, and by all accounts, it works. The water is warm to the touch and faintly luminescent. The Grand Nave is EAST.",
+    "exits": [
+      {"direction": "east", "destination": "grand_nave"},
+      {"direction": "down", "destination": "hidden_passage", "locked": true, "lock_flag": "passage_revealed", "lock_message": "There doesn't seem to be any other way out of this chamber."}
+    ]
+  },
+  {
+    "id": "high_priest_antechamber",
+    "name": "High Priest's Antechamber",
+    "description": "An ornate waiting room with tapestries depicting the Divine Light's miracles. A burly temple guard stands before the door to the south, arms folded. He does not look like someone who can be reasoned with. The Grand Nave is NORTH.",
+    "exits": [
+      {"direction": "north", "destination": "grand_nave"},
+      {"direction": "south", "destination": "high_priest_chamber", "locked": true, "lock_flag": "guard_drugged", "lock_message": "The guard blocks your way. 'The High Priest sees no one without an appointment. Leave now.'"}
+    ]
+  },
+  {
+    "id": "high_priest_chamber",
+    "name": "High Priest's Private Chamber",
+    "description": "A lavish room draped in silk and gold thread. The High Priest's desk is carved from dark wood, covered in documents and offerings from the faithful. A locked display case holds confiscated offworlder technology. Through a window, the golden dome of the temple gleams. The antechamber is NORTH.",
+    "exits": [
+      {"direction": "north", "destination": "high_priest_antechamber"}
+    ]
+  },
+  {
+    "id": "hidden_passage",
+    "name": "Hidden Passage",
+    "description": "A narrow stone staircase spiralling down into darkness beneath the Sacred Pool. The walls are smooth — not carved, but fused, as if melted by tremendous heat. This is not human construction. The air grows cooler as you descend. The pool chamber is UP. The passage continues SOUTH.",
+    "exits": [
+      {"direction": "up", "destination": "sacred_pool"},
+      {"direction": "south", "destination": "ancient_corridor_1"}
+    ]
+  },
+  {
+    "id": "ancient_corridor_1",
+    "name": "Ancient Corridor",
+    "description": "A corridor of smooth, dark metal. Geometric patterns are etched into the walls — they pulse faintly with residual energy. This technology is thousands of years old. The passage continues NORTH and SOUTH.",
+    "dark": true,
+    "dark_description": "It's completely dark. You can hear a faint hum from somewhere ahead, but you can't see a thing. You'll need a light source.",
+    "exits": [
+      {"direction": "north", "destination": "hidden_passage"},
+      {"direction": "south", "destination": "ancient_antechamber"}
+    ]
+  },
+  {
+    "id": "ancient_antechamber",
+    "name": "Ancient Antechamber",
+    "description": "A hexagonal chamber where several passages converge. The walls display holographic murals — frozen, unpowered, but still faintly visible. They depict tall, slender beings operating advanced machinery. An alien civilisation was here long before humans settled this world. Passages lead NORTH, EAST, WEST, and SOUTH.",
+    "exits": [
+      {"direction": "north", "destination": "ancient_corridor_1"},
+      {"direction": "east", "destination": "storage_vault"},
+      {"direction": "west", "destination": "power_junction"},
+      {"direction": "south", "destination": "artifact_chamber"}
+    ]
+  },
+  {
+    "id": "storage_vault",
+    "name": "Storage Vault",
+    "description": "A long room lined with sealed compartments. Most are fused shut with age. One compartment near the door still functions, its panel glowing a dim amber. Alien equipment in various states of decay fills the open shelves. The antechamber is WEST.",
+    "exits": [
+      {"direction": "west", "destination": "ancient_antechamber"}
+    ]
+  },
+  {
+    "id": "power_junction",
+    "name": "Power Junction",
+    "description": "A room dominated by conduits and energy transfer nodes. Power flows from somewhere below to the chamber above — this is how the Sacred Pool gets its healing energy. A sealed door leads SOUTH to what sensors would identify as a major energy source. A keycard slot glows beside the door. The antechamber is EAST.",
+    "exits": [
+      {"direction": "east", "destination": "ancient_antechamber"},
+      {"direction": "south", "destination": "control_room", "locked": true, "lock_flag": "control_unlocked", "lock_message": "The door is sealed. A keycard slot beside it glows a steady amber, waiting for authorisation."}
+    ]
+  },
+  {
+    "id": "control_room",
+    "name": "Control Room",
+    "description": "The heart of the ancient complex. A curved control console wraps around a central column that pulses with blue-white energy — the same light as the Sacred Pool above. This is the source of the 'divine miracles.' An alien machine, millennia old, still functioning, its energy tapped by the temple priests for their healing pool and their power. Readouts in an alien script scroll across the displays. The power junction is NORTH.",
+    "exits": [
+      {"direction": "north", "destination": "power_junction"}
+    ]
+  },
+  {
+    "id": "artifact_chamber",
+    "name": "Artifact Chamber",
+    "description": "A vast domed chamber. In the centre, suspended in a column of light, floats a crystalline device — the alien artifact that powers the entire complex. It rotates slowly, humming with contained energy. Conduits run from it in all directions, feeding power throughout the ruins and up to the temple above. The antechamber is NORTH. A dark passage leads EAST.",
+    "exits": [
+      {"direction": "north", "destination": "ancient_antechamber"},
+      {"direction": "east", "destination": "ancient_corridor_2"}
+    ]
+  },
+  {
+    "id": "ancient_corridor_2",
+    "name": "Ancient Corridor (East)",
+    "description": "Another smooth-walled corridor. The air smells of dust and ozone. Faded markings on the wall seem to point toward an exit. The artifact chamber is WEST. The corridor slopes upward to the SOUTH.",
+    "dark": true,
+    "dark_description": "Total darkness. You can feel a faint breeze from somewhere ahead — there might be an exit, but you can't navigate without light.",
+    "exits": [
+      {"direction": "west", "destination": "artifact_chamber"},
+      {"direction": "south", "destination": "escape_tunnel"}
+    ]
+  },
+  {
+    "id": "escape_tunnel",
+    "name": "Escape Tunnel",
+    "description": "A rough tunnel where ancient construction meets natural rock. It slopes upward toward a rusted grate. Pale light filters through from above — this comes out somewhere in the town. The corridor is NORTH. The grate leads UP to the surface.",
+    "exits": [
+      {"direction": "north", "destination": "ancient_corridor_2"},
+      {"direction": "up", "destination": "back_alley"}
+    ],
+    "first_visit_text": "You push the grate open from below. It swings upward with a groan of rusted hinges — you recognise the back alley behind the market."
+  }
+]

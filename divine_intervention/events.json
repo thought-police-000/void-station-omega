@@ -1,0 +1,667 @@
+{
+  "events": [
+    {
+      "id": "take_credit_chit_score",
+      "verb": "take",
+      "noun": "credit_chit",
+      "conditions": [
+        {"type": "here", "target": "credit_chit"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "credit_chit", "value": "__inventory__"},
+        {"type": "message", "value": "Taken: credit chit. 500 credits — enough to buy what you need in the market."},
+        {"type": "add_score", "value": 5}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "buy_robes",
+      "verb": "use",
+      "noun": "credit_chit",
+      "room": "market_square",
+      "conditions": [
+        {"type": "carrying", "target": "credit_chit"}
+      ],
+      "actions": [
+        {"type": "destroy_item", "target": "credit_chit"},
+        {"type": "move_item", "target": "pilgrim_robes", "value": "__inventory__"},
+        {"type": "message", "value": "You hand the credit chit to the cloth merchant. She bites it, nods, and passes you a set of plain white pilgrim robes. 'The Divine Light welcomes all seekers,' she says, pocketing the credits."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "buy_robes_alt",
+      "verb": "use",
+      "noun": "market_stall",
+      "room": "market_square",
+      "conditions": [
+        {"type": "carrying", "target": "credit_chit"}
+      ],
+      "actions": [
+        {"type": "destroy_item", "target": "credit_chit"},
+        {"type": "move_item", "target": "pilgrim_robes", "value": "__inventory__"},
+        {"type": "message", "value": "You hand the credit chit to the cloth merchant. She bites it, nods, and passes you a set of plain white pilgrim robes. 'The Divine Light welcomes all seekers,' she says, pocketing the credits."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "buy_robes_no_credits",
+      "verb": "use",
+      "noun": "market_stall",
+      "room": "market_square",
+      "conditions": [
+        {"type": "not_carrying", "target": "credit_chit"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The merchant looks at you expectantly. 'Pilgrim robes, fifty credits.' You don't have any money."}
+      ],
+      "priority": 5
+    },
+
+    {
+      "id": "wear_robes",
+      "verb": "use",
+      "noun": "pilgrim_robes",
+      "conditions": [
+        {"type": "carrying", "target": "pilgrim_robes"},
+        {"type": "flag_unset", "target": "wearing_robes"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "wearing_robes"},
+        {"type": "destroy_item", "target": "pilgrim_robes"},
+        {"type": "message", "value": "You pull the pilgrim robes on over your clothes. The white fabric is rough but concealing. You look like any other pilgrim heading for the temple."},
+        {"type": "add_score", "value": 5}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "enter_temple_first",
+      "verb": null,
+      "room": "temple_courtyard",
+      "conditions": [
+        {"type": "flag_set", "target": "wearing_robes"},
+        {"type": "flag_unset", "target": "entered_temple"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "entered_temple"},
+        {"type": "message", "value": "The guards wave you through with barely a glance. You're inside the Temple of the Divine Light. The courtyard bustles with acolytes and pilgrims. Now to find your ship key — and find out what's really going on here."},
+        {"type": "add_score", "value": 15}
+      ],
+      "once": true
+    },
+
+    {
+      "id": "take_robes_market",
+      "verb": "take",
+      "noun": "pilgrim_robes",
+      "room": "market_square",
+      "conditions": [
+        {"type": "not_carrying", "target": "pilgrim_robes"},
+        {"type": "flag_unset", "target": "wearing_robes"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The cloth merchant slaps your hand away. 'Those are for sale, pilgrim! Fifty credits.' She gestures at the price sign."}
+      ],
+      "priority": 10
+    },
+    {
+      "id": "take_robes_nowhere",
+      "verb": "take",
+      "noun": "pilgrim_robes",
+      "conditions": [
+        {"type": "not_carrying", "target": "pilgrim_robes"},
+        {"type": "flag_unset", "target": "wearing_robes"}
+      ],
+      "actions": [
+        {"type": "message", "value": "You don't have any pilgrim robes. The cloth merchant in the market square sells them."}
+      ],
+      "priority": 5
+    },
+
+    {
+      "id": "take_medallion_score",
+      "verb": "take",
+      "noun": "acolyte_medallion",
+      "conditions": [
+        {"type": "here", "target": "acolyte_medallion"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "acolyte_medallion", "value": "__inventory__"},
+        {"type": "message", "value": "Taken: acolyte's medallion. This might open doors that are closed to ordinary pilgrims."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "unlock_scriptorium",
+      "verb": "use",
+      "noun": "acolyte_medallion",
+      "room": "grand_nave",
+      "conditions": [
+        {"type": "carrying", "target": "acolyte_medallion"},
+        {"type": "flag_unset", "target": "scriptorium_unlocked"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "scriptorium_unlocked"},
+        {"type": "message", "value": "You press the medallion into the recess beside the scriptorium door. It clicks, and the lock disengages. The door swings inward, revealing shelves of manuscripts beyond."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "take_codex_score",
+      "verb": "take",
+      "noun": "ancient_codex",
+      "conditions": [
+        {"type": "here", "target": "ancient_codex"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "ancient_codex", "value": "__inventory__"},
+        {"type": "message", "value": "Taken: ancient codex. The metallic binding is cool to the touch. The alien script inside is incomprehensible — you'll need some way to translate it."},
+        {"type": "add_score", "value": 5}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "translate_codex",
+      "verb": "use",
+      "noun": "translator",
+      "conditions": [
+        {"type": "carrying", "target": "translator"},
+        {"type": "carrying", "target": "ancient_codex"},
+        {"type": "flag_unset", "target": "codex_translated"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "codex_translated"},
+        {"type": "message", "value": "You hold the translator over the codex pages. The device whirs, and text begins scrolling across the screen:\n\n'Maintenance Protocol 7: The healing field generator draws power from the primary artifact via sub-level conduits. Access to the sub-level is through the drainage channel beneath the pool in Chamber 3 (surface level).'\n\nThe Sacred Pool is a drainage channel? And there's a sub-level beneath the temple — alien technology, not divine power. The pool might be the way down."},
+        {"type": "add_score", "value": 15}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "translate_codex_alt",
+      "verb": "examine",
+      "noun": "ancient_codex",
+      "conditions": [
+        {"type": "carrying", "target": "translator"},
+        {"type": "carrying", "target": "ancient_codex"},
+        {"type": "flag_set", "target": "codex_translated"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The translator displays the text again: the Sacred Pool conceals a drainage channel leading to a sub-level beneath the temple. The 'divine miracles' are powered by alien technology."}
+      ],
+      "priority": 5
+    },
+
+    {
+      "id": "find_passage",
+      "verb": "examine",
+      "noun": "pool_basin",
+      "room": "sacred_pool",
+      "conditions": [
+        {"type": "flag_set", "target": "codex_translated"},
+        {"type": "flag_unset", "target": "passage_revealed"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "passage_revealed"},
+        {"type": "message", "value": "Knowing what to look for, you examine the pool more carefully. Beneath the glowing water, you find a seam in the stone floor — a hatch, disguised by the luminescence. You reach in and pull it open. Stone steps descend into darkness below the pool. The water drains slightly as the passage opens."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "examine_pool_no_knowledge",
+      "verb": "examine",
+      "noun": "pool_basin",
+      "room": "sacred_pool",
+      "conditions": [
+        {"type": "flag_unset", "target": "codex_translated"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The pool glows with a steady blue-white light from deep below. The water is warm and faintly luminescent. It's beautiful, but you're not sure what you're looking for."}
+      ],
+      "priority": 5
+    },
+
+    {
+      "id": "take_translator_score",
+      "verb": "take",
+      "noun": "translator",
+      "conditions": [
+        {"type": "here", "target": "translator"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "translator", "value": "__inventory__"},
+        {"type": "message", "value": "Taken: translation device. An offworld scanner — someone else was investigating the temple's secrets before you. The lens glows faintly, ready to scan text."},
+        {"type": "add_score", "value": 5}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "take_glow_rod",
+      "verb": "take",
+      "noun": "glow_rod",
+      "conditions": [
+        {"type": "here", "target": "glow_rod"},
+        {"type": "flag_unset", "target": "got_glow_rod"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "glow_rod", "value": "__inventory__"},
+        {"type": "set_flag", "target": "has_light"},
+        {"type": "set_flag", "target": "got_glow_rod"},
+        {"type": "message", "value": "Taken: glow rod. You squeeze the handle and it clicks on, casting a steady white beam."},
+        {"type": "add_score", "value": 5}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "drop_glow_rod_update",
+      "verb": "drop",
+      "noun": "glow_rod",
+      "conditions": [
+        {"type": "carrying", "target": "glow_rod"}
+      ],
+      "actions": [
+        {"type": "clear_flag", "target": "has_light"}
+      ],
+      "override_builtin": false,
+      "priority": 5
+    },
+
+    {
+      "id": "navigate_dark_1",
+      "verb": null,
+      "room": "ancient_corridor_1",
+      "conditions": [
+        {"type": "flag_set", "target": "has_light"},
+        {"type": "flag_unset", "target": "navigated_corridor_1"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "navigated_corridor_1"},
+        {"type": "message", "value": "Your glow rod illuminates the ancient corridor. Geometric patterns on the walls seem to shift in the light — an optical effect of the alien engineering. The construction is flawless even after thousands of years."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true
+    },
+
+    {
+      "id": "take_keycard_score",
+      "verb": "take",
+      "noun": "ancient_keycard",
+      "conditions": [
+        {"type": "here", "target": "ancient_keycard"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "ancient_keycard", "value": "__inventory__"},
+        {"type": "message", "value": "Taken: ancient keycard. It hums against your palm — still functional after millennia."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "unlock_control_room",
+      "verb": "use",
+      "noun": "ancient_keycard",
+      "room": "power_junction",
+      "conditions": [
+        {"type": "carrying", "target": "ancient_keycard"},
+        {"type": "flag_unset", "target": "control_unlocked"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "control_unlocked"},
+        {"type": "message", "value": "You slide the ancient keycard into the slot. It flashes green, and the sealed door slides open with a soft hiss. Beyond it, alien displays glow in the darkness."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "disable_artifact",
+      "verb": "use",
+      "noun": "control_console",
+      "room": "control_room",
+      "conditions": [
+        {"type": "flag_unset", "target": "artifact_disabled"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "artifact_disabled"},
+        {"type": "move_item", "target": "artifact_core", "value": "__inventory__"},
+        {"type": "message", "value": "You work the alien controls, guided by intuition and the translator's help. One by one, the power conduits go dark. The humming fades. The blue-white glow dims and dies.\n\nA small crystalline module ejects from the console — the artifact's data core, containing the operational records of this complex. Proof that the 'Divine Light' is technology, not theology.\n\nAbove you, the Sacred Pool will have gone dark. The temple priests will know something is very wrong.\n\nYou need to get to your ship. Now."},
+        {"type": "add_score", "value": 25},
+        {"type": "set_counter", "target": "alert_countdown", "value": 20},
+        {"type": "enable_timer", "target": "alert_timer"}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "take_sleeping_draught_score",
+      "verb": "take",
+      "noun": "sleeping_draught",
+      "conditions": [
+        {"type": "here", "target": "sleeping_draught"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "sleeping_draught", "value": "__inventory__"},
+        {"type": "message", "value": "Taken: sleeping draught. A powerful herbal sedative. Could be useful."},
+        {"type": "add_score", "value": 5}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "take_wine_score",
+      "verb": "take",
+      "noun": "sacred_wine",
+      "conditions": [
+        {"type": "here", "target": "sacred_wine"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "sacred_wine", "value": "__inventory__"},
+        {"type": "message", "value": "Taken: sacred wine. The flask is heavy. The wine smells sweet and strong."},
+        {"type": "add_score", "value": 5}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "combine_wine_draught",
+      "verb": "combine",
+      "noun": "sacred_wine with sleeping_draught",
+      "conditions": [
+        {"type": "carrying", "target": "sacred_wine"},
+        {"type": "carrying", "target": "sleeping_draught"}
+      ],
+      "actions": [
+        {"type": "destroy_item", "target": "sacred_wine"},
+        {"type": "destroy_item", "target": "sleeping_draught"},
+        {"type": "move_item", "target": "drugged_wine", "value": "__inventory__"},
+        {"type": "message", "value": "You uncork the wine flask and pour the entire vial of sleeping draught into it. The sedative dissolves without a trace — the wine smells the same, sweet and potent. One cup of this would knock a man out cold."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "combine_draught_wine",
+      "verb": "combine",
+      "noun": "sleeping_draught with sacred_wine",
+      "conditions": [
+        {"type": "carrying", "target": "sacred_wine"},
+        {"type": "carrying", "target": "sleeping_draught"}
+      ],
+      "actions": [
+        {"type": "destroy_item", "target": "sacred_wine"},
+        {"type": "destroy_item", "target": "sleeping_draught"},
+        {"type": "move_item", "target": "drugged_wine", "value": "__inventory__"},
+        {"type": "message", "value": "You uncork the wine flask and pour the entire vial of sleeping draught into it. The sedative dissolves without a trace — the wine smells the same, sweet and potent. One cup of this would knock a man out cold."},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "drug_guard",
+      "verb": "use",
+      "noun": "drugged_wine",
+      "room": "high_priest_antechamber",
+      "conditions": [
+        {"type": "carrying", "target": "drugged_wine"},
+        {"type": "flag_unset", "target": "guard_drugged"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "guard_drugged"},
+        {"type": "destroy_item", "target": "drugged_wine"},
+        {"type": "swap_item", "target": "temple_guard", "value": "guard_sleeping"},
+        {"type": "message", "value": "You offer the flask to the guard. 'Sacred wine, brother? From the meditation garden.' He hesitates, then takes a long swig. 'Don't mind if I...' His eyes glaze over. He slides down the wall and slumps to the floor, snoring heavily. The way to the High Priest's chamber is clear."},
+        {"type": "add_score", "value": 15}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "use_wine_on_guard_undrugged",
+      "verb": "use",
+      "noun": "sacred_wine",
+      "room": "high_priest_antechamber",
+      "conditions": [
+        {"type": "carrying", "target": "sacred_wine"},
+        {"type": "flag_unset", "target": "guard_drugged"}
+      ],
+      "actions": [
+        {"type": "message", "value": "You offer the guard the wine. He takes a drink and hands it back. 'Decent vintage. Now move along.' He seems unaffected — you'd need something stronger to put him out."}
+      ],
+      "priority": 5
+    },
+
+    {
+      "id": "drug_guard_alt",
+      "verb": "use",
+      "noun": "sacred_wine",
+      "room": "high_priest_antechamber",
+      "conditions": [
+        {"type": "carrying", "target": "drugged_wine"},
+        {"type": "flag_unset", "target": "guard_drugged"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "guard_drugged"},
+        {"type": "destroy_item", "target": "drugged_wine"},
+        {"type": "swap_item", "target": "temple_guard", "value": "guard_sleeping"},
+        {"type": "message", "value": "You offer the flask to the guard. 'Sacred wine, brother? From the meditation garden.' He hesitates, then takes a long swig. 'Don't mind if I...' His eyes glaze over. He slides down the wall and slumps to the floor, snoring heavily. The way to the High Priest's chamber is clear."},
+        {"type": "add_score", "value": 15}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "take_ship_key_score",
+      "verb": "take",
+      "noun": "ship_key",
+      "conditions": [
+        {"type": "here", "target": "ship_key"}
+      ],
+      "actions": [
+        {"type": "move_item", "target": "ship_key", "value": "__inventory__"},
+        {"type": "message", "value": "Taken: your ship's ignition key! You feel its familiar weight in your hand. Now you just need to get back to the Aster Lain and get off this rock."},
+        {"type": "add_score", "value": 15}
+      ],
+      "once": true,
+      "priority": 10
+    },
+
+    {
+      "id": "reach_escape_tunnel",
+      "verb": null,
+      "room": "escape_tunnel",
+      "conditions": [
+        {"type": "flag_unset", "target": "reached_tunnel"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "reached_tunnel"},
+        {"type": "set_flag", "target": "tunnel_open"},
+        {"type": "add_score", "value": 10}
+      ],
+      "once": true
+    },
+
+    {
+      "id": "board_ship",
+      "verb": "use",
+      "noun": "ship_key",
+      "room": "ship_interior",
+      "conditions": [
+        {"type": "carrying", "target": "ship_key"},
+        {"type": "flag_unset", "target": "ship_powered"},
+        {"type": "flag_set", "target": "artifact_disabled"}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "ship_powered"},
+        {"type": "message", "value": "You slot the ignition key into the bridge console. The Aster Lain hums to life around you — lights, engines, nav computer. The magnetic clamp on the landing struts disengages automatically as the ship powers up. She's ready to fly.\n\nUSE SHIP to launch!"},
+        {"type": "add_score", "value": 15}
+      ],
+      "once": true,
+      "priority": 10
+    },
+    {
+      "id": "launch_ship",
+      "verb": "use",
+      "noun": "ship_key",
+      "room": "ship_interior",
+      "conditions": [
+        {"type": "flag_set", "target": "ship_powered"}
+      ],
+      "actions": [
+        {"type": "message", "value": "You slam the throttle forward. The Aster Lain leaps skyward on a column of fire, blasting free of the dusty landing pad. Through the viewport, you watch the Temple of the Divine Light shrink below you — its golden dome, its white courtyard, the pilgrims scattering from the launch blast.\n\nIn your pocket, the alien data core hums with proof. The Divine Light was never divine — just ancient technology, millennia old, exploited by priests who may or may not have known the truth.\n\nThe stars open up above you. You're free.\n\nWhat you do with what you've learned is up to you."},
+        {"type": "add_score", "value": 25},
+        {"type": "game_over", "value": "win"}
+      ],
+      "priority": 15
+    },
+    {
+      "id": "launch_ship_alt",
+      "verb": "use",
+      "noun": "ship",
+      "room": "ship_interior",
+      "conditions": [
+        {"type": "flag_set", "target": "ship_powered"}
+      ],
+      "actions": [
+        {"type": "message", "value": "You slam the throttle forward. The Aster Lain leaps skyward on a column of fire, blasting free of the dusty landing pad. Through the viewport, you watch the Temple of the Divine Light shrink below you — its golden dome, its white courtyard, the pilgrims scattering from the launch blast.\n\nIn your pocket, the alien data core hums with proof. The Divine Light was never divine — just ancient technology, millennia old, exploited by priests who may or may not have known the truth.\n\nThe stars open up above you. You're free.\n\nWhat you do with what you've learned is up to you."},
+        {"type": "add_score", "value": 25},
+        {"type": "game_over", "value": "win"}
+      ],
+      "priority": 15
+    },
+
+    {
+      "id": "use_key_no_power",
+      "verb": "use",
+      "noun": "ship_key",
+      "room": "ship_interior",
+      "conditions": [
+        {"type": "carrying", "target": "ship_key"},
+        {"type": "flag_unset", "target": "ship_powered"},
+        {"type": "flag_unset", "target": "artifact_disabled"}
+      ],
+      "actions": [
+        {"type": "message", "value": "You slot the key into the console. The ship tries to power up, but the magnetic clamp on the landing struts holds firm. As long as the temple authorities control the starport, you can't release the clamp remotely. You need to find another way to disable their hold on your ship."}
+      ],
+      "priority": 5
+    },
+
+    {
+      "id": "alert_priests_catch_temple",
+      "verb": null,
+      "conditions": [
+        {"type": "flag_set", "target": "artifact_disabled"},
+        {"type": "flag_set", "target": "priests_caught_you"}
+      ],
+      "actions": [
+        {"type": "message", "value": "Temple guards burst in from every direction! 'HERETIC! BLASPHEMER! You have defiled the Divine Light!' They seize you before you can react. You are dragged before the furious High Priest and thrown into a cell beneath the temple. Your journey ends here."},
+        {"type": "game_over", "value": "lose"}
+      ],
+      "priority": 20
+    },
+
+    {
+      "id": "alert_countdown_zero",
+      "verb": null,
+      "conditions": [
+        {"type": "flag_set", "target": "artifact_disabled"},
+        {"type": "counter_eq", "target": "alert_countdown", "value": 0}
+      ],
+      "actions": [
+        {"type": "set_flag", "target": "priests_caught_you"}
+      ],
+      "priority": 20
+    },
+
+    {
+      "id": "tavern_info",
+      "verb": "examine",
+      "noun": "tavern",
+      "room": "tavern",
+      "conditions": [],
+      "actions": [
+        {"type": "message", "value": "The bartender leans over. 'Offworlder, eh? Word of advice — the priests run everything here. You want to get anywhere in this town, you look like a pilgrim. And don't ask too many questions about the Divine Light. Last fellow who did that disappeared.' He glances around nervously and goes back to polishing glasses."}
+      ],
+      "priority": 5
+    },
+
+    {
+      "id": "examine_altar",
+      "verb": "examine",
+      "noun": "altar",
+      "room": "grand_nave",
+      "conditions": [],
+      "actions": [
+        {"type": "message", "value": "The golden altar radiates a faint warmth that isn't natural for metal. The glow comes from beneath — through hairline seams in the stone floor. Whatever powers this temple, it's underground."}
+      ],
+      "priority": 5
+    },
+
+    {
+      "id": "examine_bell_tower_graffiti",
+      "verb": "examine",
+      "noun": "bell_tower",
+      "room": "bell_tower",
+      "conditions": [],
+      "actions": [
+        {"type": "message", "value": "'THE LIGHT IS A LIE.' The words are scratched deep into the stone — someone spent time on this. Below it, smaller: 'Look beneath the pool. — J.K.' Another offworlder came to the same conclusion. But it seems they never made it out."}
+      ],
+      "priority": 5
+    },
+
+    {
+      "id": "ship_no_key",
+      "verb": "use",
+      "noun": "ship",
+      "room": "ship_interior",
+      "conditions": [
+        {"type": "not_carrying", "target": "ship_key"},
+        {"type": "flag_unset", "target": "ship_powered"}
+      ],
+      "actions": [
+        {"type": "message", "value": "The bridge consoles are dark. Without your ignition key, the Aster Lain is just dead metal. The starport customs office said the key was sent to the High Priest."}
+      ],
+      "priority": 5
+    }
+  ],
+  "timers": [
+    {
+      "name": "alert_timer",
+      "counter": "alert_countdown",
+      "interval": 1,
+      "on_zero_event": "alert_countdown_zero",
+      "message_template": "*** TEMPLE ALERT: The priests are searching! {value} TURNS REMAINING ***",
+      "active": false
+    }
+  ]
+}
